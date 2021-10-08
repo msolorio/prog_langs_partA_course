@@ -1,5 +1,13 @@
 (* This is a comment *)
 
+(* 
+STATIC ENVIRONMENT
+- runs first, evaluates the data types of each value / expression, holds in memory
+
+DYNAMIC ENVIRONMENT
+- holds actual values for variables in memory
+*)
+
 val x = 34;
 (* static env: x: int *)
 (* dynamic env: x --> 34 *)
@@ -25,7 +33,7 @@ WHAT ARE THE...
 
 2. TYPE-CHECKING RULES
   - what types are valid for sub-expressions - look up in the static env.
-  - what types of return values
+  - what are the types of the return values for each expression
 
 3. EVALUATION RULES
 *)
