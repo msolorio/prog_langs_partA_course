@@ -13,33 +13,111 @@ val b = 5; *)
 (* val my_list = [1, 2, true]; *)
 
 (* cons operator - prepend to a list *)
-val my_list = [1, 2, 3];
+(* val my_list = [1, 2, 3]; *)
 
 (* Prepent 0 to my_list *)
 (* val new_list = 0::my_list; *)
 
+(* val my_list = 34::my_list; *)
+
+(* my_list; *)
+
 (* multiple prepends *)
+(* val my_list = [1, 2, 3]; *)
 (* val new_list = ~1::0::my_list; *)
 
+(* new_list; *)
+
 (* Check if a list is empty *)
-(* null my_list;
+(* null my_list; *)
 
-null []; *)
+(* null []; *)
 
+(* head function - returns first item in a list *)
 (* `a list --> `a *)
+(* val my_list = [1, 2, 3]; *)
+
 (* val first = hd my_list; *)
 
 (* will error - can't get first item of empty array *)
 (* val first = hd []; *)
 
 (* tail `a list --> `a list *)
-(* val lasts = tl my_list; *)
+(* tail function - returns a list of all items except the first item *)
+(* val my_list = [1, 2, 3];
+val lasts = tl my_list; *)
 
-val pairs = [(0,0), (0, 1), (2, 2)];
-(* hd pairs; *)
-val updated_pairs = (1, 0)::pairs;
+(* val pairs = [(0,0), (0, 1), (2, 2)]; (* (int * int) list *)
+val first_pair = hd pairs; *)
+(* val updated_pairs = (1, 0)::pairs; *)
 
-(* - [];
+
+(* SWAP ******************************** *)
+(* val my_tup = (1, 2); *)
+
+(* val first = (#1 my_tup);
+val second = (#2 my_tup);
+
+fun swap (tup: int * int) =
+  (#2 tup, #1 tup);
+
+swap my_tup; *)
+
+(* SUM ********************************* *)
+(* val my_tup = (2, 3);
+
+fun sum (pr : int*int) =
+  (#1 pr) + (#2 pr);
+
+sum my_tup; *)
+
+(* val my_list = [1, 2];
+
+fun sum (ls : int list) =
+  if null ls
+  then 0
+  else hd ls + sum (tl ls);
+
+sum my_list; *)
+
+(* 3 *)
+
+(* fun sum ([1, 2]) =
+  if null ls
+  then 0
+  else 1 + 2;
+
+fun sum ([2]) =
+  if null ls
+  then 0
+  else 2;
+
+fun sum ([]) =
+  if null ls
+  then 0
+  else 2 + sum (); *)
+
+(* fun sort (tup: int*int) =
+  if (#1 tup > #2 tup)
+  then (#2 tup, #1 tup)
+  else tup;
+
+val sorted_tup = sort (3, 2); *)
+
+(* ****************************************** *)
+(* TODO: write a function that will reverse an array *)
+(* fun reverse (ls: int list) =
+  if null ls
+  then []
+  else tl(ls)::reverse(); *)
+
+
+val my_list = [1, 2, 3];
+
+reverse (my_list);
+
+(*
+- [];
 val it = [] : 'a list
 - [3,4,5];
 val it = [3,4,5] : int list
