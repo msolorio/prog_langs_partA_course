@@ -6,13 +6,7 @@ the first argument is a date that comes before the second argument. (If the two 
 the result is false.)
 
  *)
-
-(* fun check_month ((date1: int*int*int), (date2: int*int*int)) =
-  if #2 date1 = # *)
-
-
-
-(* fun is_older ((date1: int*int*int), (date2: int*int*int)) =
+fun is_older ((date1: int*int*int), (date2: int*int*int)) =
   let
     val year1 = #1 date1;
     val year2 = #1 date2;
@@ -27,7 +21,7 @@ the result is false.)
       then (day1 < day2)
       else (month1 < month2)
     else (year1 < year2)
-  end *)
+  end
 
 (* ***************************************************************** *)
 (* 
@@ -35,8 +29,6 @@ Write a function number_in_month that takes a list of dates and a month (i.e., a
 how many dates in the list are in the given month.
  *)
 (* fun number_in_month (dates: (int*int*int) list, month: int) = *)
-
-
 
 fun number_in_month (dates: (int*int*int) list, month: int) =
   let
@@ -53,3 +45,48 @@ fun number_in_month (dates: (int*int*int) list, month: int) =
   in 
     length new_list
   end
+
+(* **************************************************************** *)
+(* 
+Write a function number_in_months that takes a list of dates and a list of months (i.e., an int list)
+and returns the number of dates in the list of dates that are in any of the months in the list of months.
+Assume the list of months has no number repeated. Hint: Use your answer to the previous problem.
+ *)
+
+fun number_in_months (dates: (int*int*int) list, months: int list) =
+  if null months
+  then 0
+  else number_in_month(dates, hd(months)) + number_in_months(dates, tl months);
+
+(* *********************************************************************************** *)
+(* 
+Write a function dates_in_month that takes a list of dates and a month (i.e., an int) and returns a
+list holding the dates from the argument list of dates that are in the month. The returned list should
+contain dates in the order they were originally given.
+ *)
+
+fun dates_in_month (dates: (int*int*int) list, month: int) =
+  if null(dates)
+  then []
+  else if (#2 (hd dates) = month)
+  then (hd dates)::dates_in_month(tl dates, month)
+  else dates_in_month(tl dates, month);
+
+
+fun append(dates1: (int*int*int) list, dates2: (int*int*int) list) =
+  if null dates1
+  then dates2
+  else (hd dates1)::append(tl dates1, dates2);
+
+(* *********************************************************************************** *)
+(* 
+Write a function dates_in_months that takes a list of dates and a list of months (i.e., an int list)
+and returns a list holding the dates from the argument list of dates that are in any of the months in
+the list of months. Assume the list of months has no number repeated. Hint: Use your answer to the
+previous problem and SML’s list-append operator (@).
+*)
+fun dates_in_months (dates: (int*int*int) list, months: int list) =
+  if null months
+  then []
+  else append(dates_in_month(dates, hd months), dates_in_months(dates, tl months));
+
