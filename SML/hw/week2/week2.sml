@@ -164,6 +164,7 @@ fun get_nth (str_list: string list, n: int) =
   end;
 
 (* 
+7.
 Write a function date_to_string that takes a date and returns a string of the form January 20, 2013
 (for example). Use the operator ^ for concatenating strings and the library function Int.toString
 for converting an int to a string. For producing the month part, do not use a bunch of conditionals.
