@@ -173,12 +173,6 @@ comma following the day and use capitalized English month names: January, Februa
 May, June, July, August, September, October, November, December.
  *)
 
-(* Concatenate 2 strings *)
-"string1" ^ "string2";
-
-(* converts Int to String *)
-Int.toString 120;
-
 fun date_to_string ((date: int*int*int)) =
   let
     val months = [
@@ -204,3 +198,74 @@ fun date_to_string ((date: int*int*int)) =
   end;
 
 date_to_string((2013, 01, 20));
+
+(* 
+8.
+Write a function number_before_reaching_sum that takes an int called sum, which you can assume
+is positive, and an int list, which you can assume contains all positive numbers, and returns an int.
+You should return an int n such that the first n elements of the list add to less than sum, but the first
+n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in
+value; it is okay for an exception to occur if this is not the case.
+ *)
+
+fun append_int_lists (int_list1: int list, int_list2: int list) =
+  if null int_list1
+  then int_list2
+  else (hd int_list1)::append_int_lists(tl int_list1, int_list2);
+
+
+fun add_to_back (num: int, int_list: int list) =
+  let
+    val single_item_list = num::[]
+  in
+    if null int_list
+    then single_item_list
+    else append_int_lists(int_list, single_item_list)
+  end;
+
+
+fun reverse_list (int_list: int list) =
+  if null int_list
+  then []
+  else
+    let
+      val hd_item_list = (hd int_list)::[]
+    in
+      append_int_lists(reverse_list(tl int_list), hd_item_list)
+    end;
+
+  
+(* [1, 2] *)
+
+(* add_to_back(1, [2, 3, 4]); *)
+
+(* 4, [1, 2, 3] *)
+
+fun sum_nums (list: int list) =
+  if null list
+  then 0
+  else (hd list) + sum_nums(tl list)
+
+
+fun number_before_reaching_sum (sum: int, list: int list) =
+  let
+    val reversed = reverse_list(list);
+
+    (* conditionally adds item to list if existing added items sum under given sum *)
+    fun add_item(list: int list) =
+      if null list
+      then []
+      else
+        if sum_nums(list) >= sum
+        then add_item(tl list)
+        else (hd list)::add_item(tl list)
+
+    val nums_under_sum = reverse_list(add_item(reversed))
+  in
+    length (nums_under_sum)
+  end;
+
+(* 
+9.
+
+ *)
