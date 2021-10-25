@@ -281,7 +281,7 @@ fun what_month (day: int) =
   end;
 
 (* 
-10
+10.
 Write a function month_range that takes two days of the year day1 and day2 and returns an int list
 [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
 of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
@@ -309,3 +309,25 @@ fun month_range(day1: int, day2: int) =
   in 
     build_list(day1)
   end;
+
+(* 
+11.
+Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
+evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.
+ *)
+
+fun oldest (dates: (int*int*int) list) =
+  if null dates
+  then NONE
+  else
+    let
+      fun oldest_nonempty (dates: (int*int*int) list) =
+        if null (tl dates)
+        then hd dates
+        else
+          if is_older(hd dates, oldest_nonempty(tl dates))
+          then hd dates
+          else oldest_nonempty(tl dates)
+    in
+      SOME (oldest_nonempty(dates))
+    end;
