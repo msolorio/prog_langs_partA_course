@@ -1,9 +1,9 @@
-val test1 = what_month(1) = 1;
+val test1 = month_range(1, 1) = [1];
 
-val test2 = what_month(32) = 2;
+val test2 = month_range(1, 2) = [1, 1];
 
-val test3 = what_month(365) = 12;
+val test3 = month_range(1, 31) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-val test4 = what_month(59) = 2;
+val test4 = month_range(1, 32) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2];
 
-val test5 = what_month(60) = 3;
+val test5 = month_range(364, 365) = [12, 12];

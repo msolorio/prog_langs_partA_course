@@ -279,3 +279,33 @@ fun what_month (day: int) =
   in
     (number_before_reaching_sum(day, month_ints)) + 1
   end;
+
+(* 
+10
+Write a function month_range that takes two days of the year day1 and day2 and returns an int list
+[m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
+of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
+ *)
+
+(* 
+example
+(1, 32) => [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]
+
+example
+(1, 2)
+ *)
+
+(* fun get_target_len (day1: int, day2: int) =
+  if day2 - day1 + 1 < 0
+  then 0
+  else day2 - day1 + 1; *)
+
+fun month_range(day1: int, day2: int) =
+  let
+    fun build_list(current_day: int) =
+      if current_day <= day2
+      then what_month(current_day)::build_list(current_day + 1)
+      else []
+  in 
+    build_list(day1)
+  end;
