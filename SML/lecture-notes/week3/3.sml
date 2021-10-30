@@ -1,0 +1,3 @@
+(* 
+TUPLES AS SYNTACTIC SUGAR
+ *)

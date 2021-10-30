@@ -1,3 +1,7 @@
+(* 
+RECORDS
+ *)
+
 (* a record *)
 val person = {
   name = "Amelia",
