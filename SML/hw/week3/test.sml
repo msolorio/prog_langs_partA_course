@@ -1,29 +1,3 @@
-(* 1a. 
-Write a function all_except_option, which takes a string and a string list. Return NONE if the
-string is not in the list, else return SOME lst where lst is identical to the argument list except the string
-is not in it. You may assume the string is in the list at most once. Use same_string, provided to you,
-to compare strings. Sample solution is around 8 lines.
-*)
-
-fun same_string (s1: string, s2: string) = s1 = s2;
-
-fun all_except_option (str: string, xs: string list) =
-  let
-    fun build_list (xs: string list) =
-      case xs of
-        [] => []
-      | x::xs' => 
-        if same_string(str, x)
-        then build_list(xs') 
-        else x::build_list(xs');
-
-    val result_list = build_list xs
-  in
-    if length result_list = length xs
-    then NONE
-    else SOME result_list
-  end;
-
 (* 
 1b. get_substitutions1
 Write a function get_substitutions1, which takes a string list list (a list of list of strings, the
@@ -39,15 +13,15 @@ get_substitutions1([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeff
 (* answer: ["Jeffrey","Geoff","Jeffrey"] *)
 Use part (a) and ML’s list-append (@) but no other helper functions. Sample solution is around 6 lines.
  *)
+(* fun same_string (s1: string, s2: string) = s1 = s2;
 
-(* Helper - returns new string list including all els except provided str *)
 fun all_except (str: string, xs: string list) =
   let
     fun build_list (xs: string list) =
       case xs of
         [] => []
       | x::xs' => 
-        if same_string (str, x)
+        if str = x 
         then build_list(xs') 
         else x::build_list(xs');
 
@@ -55,12 +29,13 @@ fun all_except (str: string, xs: string list) =
     build_list xs
   end;
 
-(* Helper - appends 2 lists, returns single list *)
+
 fun append_list(xs: string list, ys: string list) =
   case xs of
     [] => ys
     | x::xs' => x::append_list(xs', ys);
 
+(* append_list(["a", "b", "c"], ["x", "y", "z"]); *)
 
 fun get_substitutions1 (substitutions: string list list, s: string) =
   case substitutions of
@@ -73,5 +48,23 @@ fun get_substitutions1 (substitutions: string list list, s: string) =
       if result_length = length x
       then get_substitutions1(xs', s)
       else append_list(result, get_substitutions1(xs', s))
-    end;
+    end; *)
 
+val subs1 = [
+  ["Fred", "Fredrick"],
+  ["Jeff", "Jeffrey"],
+  ["Geoff", "Jeff", "Jeffrey"]
+];
+
+val name1 = "Jeff";
+
+
+val subs2 = [
+  ["Sam", "Samantha", "Sammy"],
+  ["Stu", "Stewart", "Stewy"]
+]
+
+val name2 = "Victor";
+
+val test1 = get_substitutions1(subs1, name1) = ["Jeffrey", "Geoff", "Jeffrey"];
+val test2 = get_substitutions1(subs2, name2) = [];
