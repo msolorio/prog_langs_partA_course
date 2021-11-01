@@ -8,12 +8,18 @@ to compare strings. Sample solution is around 8 lines.
 fun same_string (s1: string, s2: string) = s1 = s2;
 
 fun all_except_option (str: string, xs: string list) =
-  case xs of
-    [] => []
-  | x::xs' => 
-    if str = x 
-    then all_except_option(str, xs') 
-    else x::all_except_option(str, xs');
+  let
+    fun build_list (xs: string list) =
+      case xs of
+        [] => []
+      | x::xs' => 
+        if str = x 
+        then build_list(xs') 
+        else x::build_list(xs');
 
-all_except_option("b", ["a", "b", "c"]);
-
+    val result_list = build_list xs
+  in
+    if length result_list = length xs
+    then NONE
+    else SOME result_list
+  end;
