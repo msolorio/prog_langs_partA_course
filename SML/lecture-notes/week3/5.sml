@@ -27,3 +27,11 @@ case e0 of
 - e0 will attempt to match p1, p2, p3, etc...
 - for the first case it matches, it will return the associated expression
  *)
+
+(* val x = "sunny";
+
+case x of
+  "sunny" => true
+  | "mostly sunny" => true
+  | "cloudy" => false;
+ *)
