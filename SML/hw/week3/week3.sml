@@ -75,3 +75,98 @@ fun get_substitutions1 (substitutions: string list list, s: string) =
       else append_list(result, get_substitutions1(xs', s))
     end;
 
+
+(* 
+1c.
+Write a function get_substitutions2, which is like get_substitutions1 except it uses a tail-recursive
+local helper function.
+ *)
+
+fun get_substitutions2(substitutions: string list list, s: string) =
+  let
+    fun build_list(substitutions: string list list) =
+      case substitutions of
+        [] => []
+      | x::xs' =>
+        let
+          val result = all_except (s, x);
+          val result_length = length result;
+        in
+          if result_length = length x
+          then build_list xs'
+          else append_list(result, build_list xs')
+        end;
+  in 
+    build_list(substitutions)
+  end;
+
+
+(* 
+1d.
+Write a function similar_names, which takes a string list list of substitutions (as in parts (b) and
+(c)) and a full name of type {first:string,middle:string,last:string} and returns a list of full
+names (type {first:string,middle:string,last:string} list). The result is all the full names you
+can produce by substituting for the first name (and only the first name) using substitutions and parts (b)
+or (c). The answer should begin with the original name (then have 0 or more other names). Example:
+
+similar_names(
+  [
+    ["Fred","Fredrick"],
+    ["Elizabeth","Betty"],
+    ["Freddie","Fred","F"]
+  ],
+  {first="Fred", middle="W", last="Smith"}
+)
+
+answer:
+[{first="Fred", last="Smith", middle="W"},
+{first="Fredrick", last="Smith", middle="W"},
+{first="Freddie", last="Smith", middle="W"},
+{first="F", last="Smith", middle="W"}]
+
+Do not eliminate duplicates from the answer. Hint: Use a local helper function. Sample solution is
+around 10 lines.
+ *)
+
+(* Helper - builds a list of full names from a single list of subs *)
+fun build_names(
+  subs: string list,
+  full_name: { first: string, last: string, middle: string }
+) =
+  case subs of
+    [] => []
+  | x::xs' =>
+    let
+      val new_full_name = {
+        first=x,
+        last=(#last full_name),
+        middle=(#middle full_name)
+      }
+    in
+      new_full_name::build_names(xs', full_name)
+    end;
+
+
+(* Helper - appends 2 lists, returns single list *)
+fun append_name_list(
+  xs: { first: string, last: string, middle: string } list,
+  ys: { first: string, last: string, middle: string } list
+) =
+  case xs of
+    [] => ys
+    | x::xs' => x::append_name_list(xs', ys);
+
+(* Solution function *)
+fun similar_names(
+  subs: string list list,
+  full_name: { first: string, last: string, middle: string }
+) =
+  case subs of
+    [] => []
+  | x::xs' =>
+    if length (all_except (#first full_name, x)) = length x
+    then similar_names(xs', full_name)
+    else append_name_list(
+      build_names(x, full_name),
+      similar_names(xs', full_name)
+    );
