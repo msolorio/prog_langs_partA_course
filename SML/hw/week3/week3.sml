@@ -109,6 +109,7 @@ names (type {first:string,middle:string,last:string} list). The result is all th
 can produce by substituting for the first name (and only the first name) using substitutions and parts (b)
 or (c). The answer should begin with the original name (then have 0 or more other names). Example:
 
+given:
 similar_names(
   [
     ["Fred","Fredrick"],
@@ -118,7 +119,7 @@ similar_names(
   {first="Fred", middle="W", last="Smith"}
 )
 
-answer:
+returns:
 [{first="Fred", last="Smith", middle="W"},
 {first="Fredrick", last="Smith", middle="W"},
 {first="Freddie", last="Smith", middle="W"},
