@@ -132,7 +132,7 @@ around 10 lines.
 (* Helper - builds a list of full names from a single list of subs *)
 fun build_names(
   subs: string list,
-  full_name: { first: string, last: string, middle: string }
+  { first=first, last=last, middle=middle }
 ) =
   case subs of
     [] => []
@@ -140,18 +140,19 @@ fun build_names(
     let
       val new_full_name = {
         first=x,
-        last=(#last full_name),
-        middle=(#middle full_name)
+        last=(last),
+        middle=(middle)
       }
     in
-      new_full_name::build_names(xs', full_name)
+      new_full_name::build_names(xs', { first=first, last=last, middle=middle })
     end;
-
 
 (* Helper - appends 2 lists, returns single list *)
 fun append_name_list(
-  xs: { first: string, last: string, middle: string } list,
-  ys: { first: string, last: string, middle: string } list
+  (* xs: { first: string, last: string, middle: string } list,
+  ys: { first: string, last: string, middle: string } list *)
+  xs,
+  ys
 ) =
   case xs of
     [] => ys
@@ -171,3 +172,32 @@ fun similar_names(
       build_names(x, full_name),
       similar_names(xs', full_name)
     );
+
+datatype suit = Club | Diamond | Hearts | Spades;
+datatype rank = Jack | Queen | King | Ace | Num of int;
+type card = suit * rank;
+datatype color = Red | Black;
+datatype move = Discard of card | Draw;
+exception IllegalMove;
+
+(* 
+2a.
+Write a function card_color, which takes a card and returns its color (spades and clubs are black,
+diamonds and hearts are red). Note: One case-expression is enough.
+*)
+fun card_color(suit, rank) =
+  case (suit) of
+    Club    => Black
+  | Spades  => Black
+  | _       => Red;
+
+
+(* 
+Write a function card_value, which takes a card and returns its value (numbered cards have their
+number as the value, aces are 11, everything else is 10). Note: One case-expression is enough.
+*)
+fun card_value(suit, rank) =
+  case rank of
+    Num i => i
+  | Ace   => 11
+  | _     => 10
