@@ -1,3 +1,4 @@
+(* ************************************************************************************** *)
 (* 1a. 
 Write a function all_except_option, which takes a string and a string list. Return NONE if the
 string is not in the list, else return SOME lst where lst is identical to the argument list except the string
@@ -24,6 +25,7 @@ fun all_except_option (str: string, xs: string list) =
     else SOME result_list
   end;
 
+(* ************************************************************************************** *)
 (* 
 1b. get_substitutions1
 Write a function get_substitutions1, which takes a string list list (a list of list of strings, the
@@ -76,6 +78,7 @@ fun get_substitutions1 (substitutions: string list list, s: string) =
     end;
 
 
+(* ************************************************************************************** *)
 (* 
 1c.
 Write a function get_substitutions2, which is like get_substitutions1 except it uses a tail-recursive
@@ -101,6 +104,7 @@ fun get_substitutions2(substitutions: string list list, s: string) =
   end;
 
 
+(* ************************************************************************************** *)
 (* 
 1d.
 Write a function similar_names, which takes a string list list of substitutions (as in parts (b) and
@@ -180,6 +184,7 @@ datatype color = Red | Black;
 datatype move = Discard of card | Draw;
 exception IllegalMove;
 
+(* ************************************************************************************** *)
 (* 
 2a.
 Write a function card_color, which takes a card and returns its color (spades and clubs are black,
@@ -192,7 +197,9 @@ fun card_color(suit, rank) =
   | _       => Red;
 
 
+(* ************************************************************************************** *)
 (* 
+2b.
 Write a function card_value, which takes a card and returns its value (numbered cards have their
 number as the value, aces are 11, everything else is 10). Note: One case-expression is enough.
 *)
@@ -201,3 +208,39 @@ fun card_value(suit, rank) =
     Num i => i
   | Ace   => 11
   | _     => 10
+
+(* ************************************************************************************** *)
+(* 
+2c.
+Write a function remove_card, which takes a list of cards cs, a card c, and an exception e. It returns a
+list that has all the elements of cs except c. If c is in the list more than once, remove only the first one.
+If c is not in the list, raise the exception e. You can compare cards with =.
+*)
+
+fun remove_card(cs, c) =
+  case cs of
+    []     => []
+  | x::xs' => 
+    if (x = c)
+    then xs'
+    else x::remove_card(xs', c);
+
+(* ************************************************************************************** *)
+(* 
+2d.
+Write a function all_same_color, which takes a list of cards and returns true if all the cards in the
+list are the same color. Hint: An elegant solution is very similar to one of the functions using nested
+pattern-matching in the lectures.
+*)
+
+(* fun all_same_color(cards: card list) = *)
+
+(* ************************************************************************************** *)
+(* 
+2e.
+Write a function sum_cards that will sum the value of all cards in a list
+ *)
+fun sum_cards(cards) =
+  case cards of
+    [] => 0
+  | x::xs' => card_value(x) + sum_cards(xs');

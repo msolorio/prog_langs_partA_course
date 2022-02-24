@@ -1,6 +1,6 @@
 # Programming Languages, Part A
 
-Functional Programming and Recursion w/ SML programming language.
+Functional programming and recursion w/ the SML programming language.
 
 Code, notes, and HW solutions for Programming Langauges, Part A
 

@@ -27,7 +27,7 @@ fun is_older ((date1: int*int*int), (date2: int*int*int)) =
     else (year1 < year2)
   end
 
-(* ***************************************************************** *)
+(* ********************************************************************************** *)
 (*
 2. 
 Write a function number_in_month that takes a list of dates and a month (i.e., an int) and returns
@@ -57,7 +57,7 @@ fun number_in_month (dates: (int*int*int) list, month: int) =
     length new_list
   end
 
-(* **************************************************************** *)
+(* ************************************************************************************ *)
 (* 
 3.
 Write a function number_in_months that takes a list of dates and a list of months (i.e., an int list)
@@ -163,6 +163,7 @@ fun get_nth (str_list: string list, n: int) =
     get_last_item(new_list)
   end;
 
+(* ************************************************************************************** *)
 (* 
 7.
 Write a function date_to_string that takes a date and returns a string of the form January 20, 2013
@@ -199,6 +200,7 @@ fun date_to_string ((date: int*int*int)) =
 
 date_to_string((2013, 01, 20));
 
+(* ************************************************************************************** *)
 (* 
 8.
 Write a function number_before_reaching_sum that takes an int called sum, which you can assume
@@ -234,12 +236,6 @@ fun reverse_list (int_list: int list) =
       append_int_lists(reverse_list(tl int_list), hd_item_list)
     end;
 
-  
-(* [1, 2] *)
-
-(* add_to_back(1, [2, 3, 4]); *)
-
-(* 4, [1, 2, 3] *)
 
 fun sum_nums (list: int list) =
   if null list
@@ -265,6 +261,7 @@ fun number_before_reaching_sum (sum: int, list: int list) =
     length (nums_under_sum)
   end;
 
+(* ************************************************************************************** *)
 (* 
 9.
 Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns
@@ -280,6 +277,7 @@ fun what_month (day: int) =
     (number_before_reaching_sum(day, month_ints)) + 1
   end;
 
+(* ************************************************************************************** *)
 (* 
 10.
 Write a function month_range that takes two days of the year day1 and day2 and returns an int list
@@ -310,6 +308,7 @@ fun month_range(day1: int, day2: int) =
     build_list(day1)
   end;
 
+(* ************************************************************************************** *)
 (* 
 11.
 Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
