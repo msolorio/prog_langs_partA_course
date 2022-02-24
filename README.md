@@ -2,6 +2,7 @@
 
 Functional programming and recursion w/ the SML programming language.
 
-Code, notes, and HW solutions for Programming Langauges, Part A
+Code, notes, and HW solutions for [Programming Langauges, Part A](https://www.coursera.org/learn/programming-languages)
 
-https://www.coursera.org/learn/programming-languages
+
+![recursion quote](./SML/images/recursion.jpg)
