@@ -1,15 +1,11 @@
 (* 
+PAIRS AND TUPLES
+
 TUPLE
 - A collection with a fixed length
 - read only
 - cannot perform create, update, or delete operations on a tuple
-
-LIST
-- A collection with a variable length
-- read and write
-- can perform all CRUD operations
-- All items in a list must have the same type
- *)
+*)
 
 (* TUPLES *******************************************************)
 

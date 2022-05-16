@@ -1,5 +1,4 @@
-(* Programming Languages, Dan Grossman *)
-(* Section 1: Examples to Demonstrate Shadowing *)
+(* SHADOWING *)
 
 val a = 10
 (* static env - a: int *)
@@ -25,3 +24,12 @@ val f = a * 2
 
 val g = f - 3
 
+(* a --> 6, f --> 12, g --> 9 *)
+
+(* 
+x -> 0
+n -> 0
+b -> 8
+a -> 8
+
+*)

@@ -47,4 +47,6 @@ val funny = 34
 
 val v = x div w
 
-val fourteen = 7 - 7
+val fourteen = 7 + 7
+
+val u = 1.2 / 2.4
