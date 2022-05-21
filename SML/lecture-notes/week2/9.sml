@@ -120,7 +120,7 @@ count (0, 2); *)
 bad_max([5, 3, 20, 10, 6]); *)
 
 
-fun good_max (xs: int list) =
+(* fun good_max (xs: int list) =
   if null xs
   then 0
   else if null (tl xs)
@@ -135,4 +135,5 @@ fun good_max (xs: int list) =
       else tl_ans 
     end;
 
-good_max([3, 7, 1, 17, 5, 9]);
+good_max([3, 7, 1, 17, 5, 9]); *)
+
