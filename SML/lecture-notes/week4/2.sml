@@ -24,3 +24,6 @@ fun increment x = x + 1;
 
 n_times(increment, 2, 1);
 (* increment(increment(1)) => 3 *)
+
+(* ********************************************************* *)
+
