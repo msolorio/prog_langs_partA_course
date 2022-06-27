@@ -1,28 +1,28 @@
 (* LISTS AND OPTIONS ARE DATATYPES *)
 
-datatype my_int_list = Empty
-                    | Cons of int * my_int_list
+(* datatype my_int_list = Empty
+                    | Cons of int * my_int_list *)
 
 (* val list = Cons (4, Empty); *)
 
-val list = Cons (4, Cons (5, Empty))
+(* val list = Cons (4, Cons (5, Empty)) *)
 
-fun append_my_list (xs, ys) =
+(* fun append_my_list (xs, ys) =
   case xs of
     Empty => ys
-  | Cons (x, xs') => Cons (x, append_my_list (xs', ys));
+  | Cons (x, xs') => Cons (x, append_my_list (xs', ys)); *)
 
 (* ************************************************************ *)
 (* OPTIONS *)
 
-fun inc_or_zero intoption =
+(* fun inc_or_zero intoption =
   case intoption of
     NONE    => 0
   | SOME i  => i + 1;
 
 val val1 = SOME 12;
 
-inc_or_zero (val1);
+inc_or_zero (val1); *)
 
 (* ************************************************************ *)
 (* Lists *)
@@ -36,16 +36,18 @@ sum_list [1, 2, 3]; *)
 
 (* ************************************************************ *)
 
-(* fun append (xs, ys) =
+fun append(xs, ys) =
   case xs of
-    []      => ys
-  | x::xs'  => x :: append(xs', ys)
+    [] => ys
+    | x::xs' => x::append(xs', ys);
+
+
 
 
 val list1 = [1, 2];
-val list2 = [7]; *)
+val list2 = [7];
 
-(* append (list1, list2); *)
+append (list1, list2);
 
 (* fun append ([1, 2], [7]) =
   case xs of
@@ -59,13 +61,14 @@ fun append ([2], [7]) =
 
 fun append ([], [7]) =
   case xs of
-    []      => [7] *)
+    []      => [7]
+*)
 
 (* 1::2::[7]; *)
 
 (* *********************************************************** *)
 
-datatype 'a option = NONE | SOME of 'a;
+(* datatype 'a option = NONE | SOME of 'a;
 
 datatype 'a mylist = Empty | Cons of 'a * 'a mylist;
 
@@ -83,12 +86,12 @@ fun append (xs, ys) =
 val list1 = [1,2,3];
 val list2 = [7,8,9];
 
-append(list1, list2);
+append(list1, list2); *)
 
 (* ********************************************************* *)
 (* BINARY TREE *)
 
-datatype ('a, 'b) tree = Node of 'a * ('a, 'b) tree * ('a, 'b) tree
+(* datatype ('a, 'b) tree = Node of 'a * ('a, 'b) tree * ('a, 'b) tree
                       | Leaf of 'b;
 
 (* Sum all nodes and leaves of a tree *)
@@ -126,31 +129,9 @@ fun count_leaves tr =
 fun count_points tr =
   case tr of
     Leaf i => 1
-  | Node (i, lft, rgt) => 1 + count_points lft + count_points rgt;
+  | Node (i, lft, rgt) => 1 + count_points lft + count_points rgt; *)
 
 (* count_leaves node1; *)
 (* count_leaves node2; *)
 (* count_points node1; *)
 (* count_points node2; *)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,4 @@
+(* Conceptual Ways to Build New Type *)
 (* Building compound types *)
 
 (*

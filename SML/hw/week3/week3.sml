@@ -244,3 +244,4 @@ fun sum_cards(cards) =
   case cards of
     [] => 0
   | x::xs' => card_value(x) + sum_cards(xs');
+

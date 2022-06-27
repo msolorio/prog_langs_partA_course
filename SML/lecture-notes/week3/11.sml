@@ -4,16 +4,25 @@ TRUTH ABOUT FUNCTIONS
  *)
 
 (* fn: (int*int*int) => int *)
-fun sum_triple triple =
+
+(* Poor style because there is only 1 case *)
+(* fun sum_triple triple =
   case triple of
     (x, y, z) => x + y + z
   
-
 fun full_name r =
   case r of
-    { first=x, middle=y, last=z } => x ^ " " ^ y ^ " " ^ z;
+    { first=x, middle=y, last=z } => x ^ " " ^ y ^ " " ^ z; *)
 
 (* full_name ({ first="Pat", middle="R", last="Lawsome" }); *)
+
+(* We can instead use object destructuring *)
+fun full_name (r: {first: string, middle: string, last: string}) =
+  let
+    val { first=x, middle=y, last=z } = r
+  in
+    x ^ " " ^ y ^ " " ^ z
+  end;
 
 (* ***************************************************************** *)
 (* 

@@ -66,6 +66,9 @@ countup_from1(5); (* [1, 2, 3, 4, 5] *)
 countup_from1(7); (* [1, 2, 3, 4, 5, 6, 7] *)
  *)
 
+
+
+
 fun countup_from1(x: int) =
   let
     fun count(from: int) =
@@ -108,16 +111,14 @@ count (0, 2); *)
 
 (* ********************************************************** *)
 (* this is poor style but still a good thought exercise *)
-(* fun bad_max (xs: int list) =
+(* fun bad_max(xs: int list) =
   if null xs
   then 0
   else if null (tl xs)
   then hd xs
   else if hd xs > bad_max(tl xs)
   then hd xs
-  else bad_max(tl xs);
-
-bad_max([5, 3, 20, 10, 6]); *)
+  else bad_max(tl xs); *)
 
 
 (* fun good_max (xs: int list) =
@@ -137,3 +138,17 @@ bad_max([5, 3, 20, 10, 6]); *)
 
 good_max([3, 7, 1, 17, 5, 9]); *)
 
+fun good_max (xs: int list) =
+if null xs
+then NONE
+else
+  let
+    val tl_ans = good_max(tl xs)
+    val hd_ans = hd xs
+  in
+    if isSome tl_ans andalso valOf tl_ans > hd_ans
+    then tl_ans
+    else SOME (hd_ans)
+  end;
+
+good_max([0, 1, 2]);
