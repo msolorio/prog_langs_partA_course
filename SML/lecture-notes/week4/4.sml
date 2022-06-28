@@ -8,8 +8,8 @@ fun get_length s = size s;
 (*
 Map
 - Splits functionality into 2 parts.
-- map function handles iterating
-- map client function performs transform on each item
+- Recursive traversal - map function handles iterating
+- Data processing on each item - map client function performs transform on each item
  *)
 
 (* map = fn: ('a -> 'b) * 'a list -> 'b list *)
@@ -41,3 +41,17 @@ fun get_all_evens xs =
 get_all_evens [("Bill", 12), ("Ted", 11), ("Rufus", 10)];
 (* => [("Bill", 12), ("Rufus", 10)] *)
 
+
+
+fun is_even v =
+  v mod 2 = 0;
+
+(* Every *)
+fun every (f, xs) =
+  case xs of
+    [] => true
+  | x::xs' => if not (f x)
+              then false
+              else every(f, xs');
+
+every(is_even, [2, 4, 6]);
